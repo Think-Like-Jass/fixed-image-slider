@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .space {
+            height: 1500px;
+        }
+
+        .js-slider {
+            position: relative;
+            background-color: aliceblue;
+            font-size: 35px;
+            padding: 100px 50px;
+            z-index: 1;
+        }
+
+        .js-slider .js-slider-image {
+            position: fixed;
+            z-index: -1;
+            /* height: 50%; */
+            height: auto;
+            width: 300px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="space"></div>
+    <div class="js-slider">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Vanamo_Logo.png" alt="" class="js-slider-image">
+        <div class="js-slider-content">
+            <div>What is Lorem Ipsum?
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+                scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
+                into
+                electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
+                release of
+                Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
+                Aldus PageMaker including versions of Lorem Ipsum.</div>
+            <div>What is Lorem Ipsum?
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+                scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
+                into
+                electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
+                release of
+                Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
+                Aldus PageMaker including versions of Lorem Ipsum.</div>
+            <div>What is Lorem Ipsum?
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+                scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
+                into
+                electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
+                release of
+                Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
+                Aldus PageMaker including versions of Lorem Ipsum.</div>
+            <div>What is Lorem Ipsum?
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+                scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
+                into
+                electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
+                release of
+                Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
+                Aldus PageMaker including versions of Lorem Ipsum.</div>
+            <div>What is Lorem Ipsum?
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+                scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
+                into
+                electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
+                release of
+                Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
+                Aldus PageMaker including versions of Lorem Ipsum.</div>
+            <div>What is Lorem Ipsum?
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+                scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
+                into
+                electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
+                release of
+                Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
+                Aldus PageMaker including versions of Lorem Ipsum.</div>
+        </div>
+    </div>
+    <div class="space"></div>
+</body>
+
+<script>
+    let currentJsScroll = window.scrollY;
+    function adjustJsSlider() {
+        const jsWrapper = document.querySelector('.js-slider');
+
+        if (jsWrapper) {
+            const image = document.querySelector('.js-slider .js-slider-image');
+            const scrollNow = window.scrollY;
+            if (image) {
+                const imgObj = image.getBoundingClientRect();
+                const jsWrapperObj = jsWrapper.getBoundingClientRect();
+                if (currentJsScroll > scrollNow) {
+                    if (jsWrapperObj.bottom <= (window.innerHeight / 2) + (imgObj.height / 2)) {
+                        image.style.top = jsWrapperObj.bottom - imgObj.height / 2 + 'px';
+                    }
+                    else if (imgObj.top < jsWrapperObj.top) {
+                        image.style.top = jsWrapperObj.top + (imgObj.height / 2) + 'px';
+                    }
+                }
+                else {
+                    if (jsWrapperObj.top >= (window.innerHeight / 2) - (imgObj.height / 2)) {
+                        image.style.top = jsWrapperObj.top + imgObj.height / 2 + 'px';
+                    }
+                    else if (jsWrapperObj.bottom <= (window.innerHeight / 2) + (imgObj.height / 2)) {
+                        image.style.top = jsWrapperObj.bottom - imgObj.height / 2 + 'px';
+                    }
+                }
+                currentJsScroll = scrollNow;
+            }
+
+        }
+    }
+    setTimeout(() => {
+        document.addEventListener('scroll', adjustJsSlider);
+        adjustJsSlider();
+    }, 100)
+</script>
+
+</html>
